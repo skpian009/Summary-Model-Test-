@@ -1,32 +1,24 @@
-# Use a pipeline as a high-level helper
+# app.py
+import streamlit as st
 from transformers import pipeline
 
+# Load the summarization pipeline with the specified model
 pipe = pipeline("summarization", model="Falconsai/medical_summarization")
 
-result =""" Pimples, or acne, are a common skin issue caused by clogged pores from oil, dead skin cells, and bacteria. While many turn to medications, natural remedies can be equally effective in treating and preventing pimples. Here are simple and drug-free ways to clear your skin.
+# Set the title of the app
+st.title("Medical Text Summarization")
 
-1. Cleanse Regularly:
-Wash your face twice daily with a gentle cleanser to remove dirt and oil. Avoid over-washing as it can strip the skin’s natural oils, causing more oil production and potential breakouts.
+# Create a text area for user input
+input_text = st.text_area("Enter the medical text you want to summarize:", height=200)
 
-2. Exfoliate Gently:
-Exfoliating once or twice a week removes dead skin cells that clog pores. Opt for natural exfoliants like oatmeal or sugar to prevent irritation.
-
-3. Avoid Touching Your Face:
-Hands transfer bacteria and dirt to the skin. Avoid picking or squeezing pimples to prevent infections and scarring.
-
-4. Natural Spot Treatments:
-
-Tea Tree Oil: Its antibacterial properties reduce inflammation. Dilute and apply directly to the pimple.
-Aloe Vera: It soothes irritated skin and helps heal acne.
-Honey and Cinnamon: This antibacterial mask helps prevent further breakouts.
-Green Tea: Rich in antioxidants, applying it topically reduces inflammation, while drinking it helps detox the body.
-5. Maintain a Healthy Diet:
-Reduce sugary and processed foods, as they can trigger acne. Incorporate fruits, vegetables, and omega-3 rich foods like fish to promote clearer skin.
-
-6. Stay Hydrated and Manage Stress:
-Drink plenty of water to flush out toxins and maintain skin hydration. Practice relaxation techniques to manage stress, which can cause acne flare-ups.
-
-These simple, natural methods can help you remove pimples without medications, promoting clearer and healthier skin"""
-
-prompt = pipe(f"""{result}""")
-print(prompt)
+# Create a button to trigger the summarization
+if st.button("Summarize"):
+    if input_text:
+        # Generate the summary
+        summary = pipe(input_text, max_length=150, min_length=30, do_sample=False)
+        
+        # Display the summarized text
+        st.subheader("Summary:")
+        st.write(summary[0]['summary_text'])
+    else:
+        st.error("Please enter some text to summarize.")
