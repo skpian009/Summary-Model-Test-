@@ -6,7 +6,7 @@ from transformers import pipeline
 pipe = pipeline("summarization", model="Falconsai/medical_summarization")
 
 # Set the title of the app
-st.title("Theory Summarization")
+st.title("Summary Generator")
 st.markdown("<p style='color:blue; font-size:20px;'>Developed by Zubair</p>", unsafe_allow_html=True)
 st.markdown("<p style='color:red; font-size:15px;'>Based on Hugging Face Model</p>", unsafe_allow_html=True)
 
