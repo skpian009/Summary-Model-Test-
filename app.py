@@ -3,7 +3,7 @@ import streamlit as st
 from transformers import pipeline
 
 # Load the summarization pipeline with the specified model
-pipe = pipeline("summarization", model="Falconsai/medical_summarization")
+pipe = pipeline("summarization", model="Yihui/t5-small-text-summary-generation")
 
 # Set the title of the app
 st.title("Summary Generator")
