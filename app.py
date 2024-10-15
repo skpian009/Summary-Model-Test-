@@ -11,7 +11,7 @@ st.markdown("<p style='color:blue; font-size:20px;'>Developed by Zubair</p>", un
 st.markdown("<p style='color:red; font-size:15px;'>Based on Hugging Face Model</p>", unsafe_allow_html=True)
 
 # Create a text area for user input
-input_text = st.text_area("Enter the medical text you want to summarize:", height=200)
+input_text = st.text_area("Enter the text you want to get summarize:", height=200)
 
 # Create a button to trigger the summarization
 if st.button("Summarize"):
